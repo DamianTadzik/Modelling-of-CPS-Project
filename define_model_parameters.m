@@ -19,4 +19,13 @@ function model_parameters = define_model_parameters()
     model_parameters.initial.x3 = 1; % [m]
     model_parameters.initial.x4 = 0; % [m/s]
 
+    model_parameters.initial.f = 9.806649999999999; % [N]
+    model_parameters.initial.tau = 0; % [N*m]
+
+
+    model_parameters.linearized.A = 0;
+    model_parameters.linearized.B = 0;
+    model_parameters.linearized.x0 = 0;
+    model_parameters.linearized.u0 = 0;
+    model_parameters.linearized.id = 0;
 end
