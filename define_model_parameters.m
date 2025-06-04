@@ -23,6 +23,7 @@ function model_parameters = define_model_parameters()
     model_parameters.initial.tau = 0; % [N*m]
 
 
+    % Those are 'declared' here they are modified later in the script
     model_parameters.linearized.A = 0;
     model_parameters.linearized.B = 0;
     model_parameters.linearized.x0 = 0;
