@@ -23,7 +23,6 @@ function plot_ranges(r_op_ranges, theta_op_ranges, number_of_ranges)
             'EdgeColor', [0.1 0.1 0.3], ...
             'FaceAlpha', 0.1, ...
             'LineWidth', 1.0);
-
     end
 end
 

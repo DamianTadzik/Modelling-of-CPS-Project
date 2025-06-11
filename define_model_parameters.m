@@ -3,7 +3,7 @@ function model_parameters = define_model_parameters()
 %   Detailed explanation goes here
     
     model_parameters.r_min = 0.8; % [m]
-    model_parameters.r_max = 1.2; % [m]
+    model_parameters.r_max = 1.4; % [m]
     
     model_parameters.theta_min = 0; % [rad]
     model_parameters.theta_max = pi; % [rad]

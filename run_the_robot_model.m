@@ -15,7 +15,7 @@ REGULATOR_CHOICE = "LQR";
 
 %% Set the robot into position apply initial conditions and correct matrices
 
-idx = 3;
+idx = 1;
 % set the reference parameters for the controller and linearized model
 model_parameters.linearized.A = table_of_model_parameters(idx).matrices_A;
 model_parameters.linearized.B = table_of_model_parameters(idx).matrices_B;
@@ -39,18 +39,18 @@ model_parameters.initial.x4 = 0;
 
 
 %% Run the simulation, and obtain the results for plotting
-set_solver_parameters(13); % specify time if needed :>>
+set_solver_parameters(17); % specify time if needed :>>
 simOut = sim('robot_model');
 
-x1_sim = simOut.Scope.signals(1).values; % theta
-x2_sim = simOut.Scope.signals(2).values; % theta dot
-x3_sim = simOut.Scope.signals(3).values; % r
-x4_sim = simOut.Scope.signals(4).values; % r dot
-f_sim = simOut.Scope.signals(5).values;
-tau_sim = simOut.Scope.signals(6).values;
-time_sim = simOut.Scope.time;
+x1_sim = simOut.state_and_control.signals(1).values; % theta
+x2_sim = simOut.state_and_control.signals(2).values; % theta dot
+x3_sim = simOut.state_and_control.signals(3).values; % r
+x4_sim = simOut.state_and_control.signals(4).values; % r dot
+f_sim = simOut.state_and_control.signals(5).values;  % f 
+tau_sim = simOut.state_and_control.signals(6).values;% tau
+time_sim = simOut.state_and_control.time;
 samples_sim = length(time_sim);
-
+return
 %% Animate the results
 
 clear plot_robot

@@ -44,7 +44,8 @@ Main goal is to define two points A and B, and then to make the robot to go from
     - [ ] Optimization in the single point (what should we optimize, matrices Q and R?)
     - [ ] Optimization in all selected points
     - [ ]
-5. Simscape validation
+5. (Simscape) validation
+    - [x] Use XY graph to visualize trajectories and robot movement in state space and in time plots :>
     - [ ] Implement the simscape model and use instead of linear one
     - [ ] Try to visualize with simscape, not with the script mayybe :>>
 
@@ -63,3 +64,45 @@ Main goal is to define two points A and B, and then to make the robot to go from
 inż. Damian Brzana, inż. Marek Janaszkiewicz, inż. Oskar Brandys
 
 Modelling of CPS 2024/2025, dr hab. inż. Adam Piłat
+
+
+# NOTEPAD:
+
+function J = cost_fun(x)
+    % x = [q1 q2 q3 q4 r1 r2]
+    assignin('base', 'q1', x(1));
+    assignin('base', 'q2', x(2));
+    assignin('base', 'q3', x(3));
+    assignin('base', 'q4', x(4));
+    assignin('base', 'r1', x(5));
+    assignin('base', 'r2', x(6));
+
+    % Uruchom symulację
+    out = sim('twoj_model.slx', 'SimulationMode', 'normal', ...
+              'StopTime', '10', 'SaveOutput', 'on');
+
+    % Zakładamy że masz np. w modelu wyjście zapisane jako `y`
+    y = out.yout.signals.values;
+    t = out.yout.time;
+    
+    % Można np. obliczyć błąd względem refa
+    ref = ones(size(t));  % przykład – zależy co masz
+    e = ref - y;
+
+    J = sum(e.^2);  % klasyczna całka z uchybu kwadratowego
+end
+🔄 Krok 3: Uruchom optymalizację
+matlab
+Kopiuj
+Edytuj
+x0 = [1 1 1 1 0.1 0.1];
+lb = [0.01 0.01 0.01 0.01 0.001 0.001];
+ub = [100 100 100 100 10 10];
+opts = optimoptions('fmincon', 'Display', 'iter');
+[xopt, Jopt] = fmincon(@cost_fun, x0, [], [], [], [], lb, ub, [], opts);
+Albo:
+
+matlab
+Kopiuj
+Edytuj
+[xopt, Jopt] = ga(@cost_fun, 6, [], [], [], [], lb, ub);
