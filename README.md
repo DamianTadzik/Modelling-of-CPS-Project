@@ -27,23 +27,23 @@ Main goal is to define two points A and B, and then to make the robot to go from
     - [x] Prepare nonlinear model in Simulink
     - [x] Prepare script to setup the model
     - [x] Script to run and to visualize the model (currently it is not the best visualization but ok)
-    - [ ] Control signal needs constrains or even the actuator model (later)
-    - [ ] 
 2. Linearization in selected points
     - [x] Function that linearizes model in specific ranges linearize_model_at_multiple_points.m
     - [x] K matrix calculated for each of those points
-    - [ ]
 3. Controller selection and implementation
     - [x] Trajectories implemented
     - [x] Implement a LQ controller
     - [ ] Implement a gain schedulling for this controller
-    - [ ] Choose a quality criterion and implement
-    - [ ] Implement different type of controller 
+    - [x] Choose a quality criterion and implement
+    - [ ] OPTIONAL Implement different type of controller to better learn the subject 
+    - [DO!] Control signal needs constrains or even the actuator model (saturation and rate limiters defined in model params)
+    - [DO!] Think of better learning trajectory for a controller :> 
     - [ ]
 4. Controller optimization
-    - [ ] Optimization in the single point (what should we optimize, matrices Q and R?)
-    - [ ] Optimization in all selected points
-    - [ ]
+    - [x] Optimization in the single point (what should we optimize, matrices Q and R?)
+    - [ ] Optimization in not all points, just in few and then somehow extrapolate
+    - [ ] Save optimization results in a structure ;>
+    - [ ] Save logs from optimization in a file
 5. (Simscape) validation
     - [x] Use XY graph to visualize trajectories and robot movement in state space and in time plots :>
     - [ ] Implement the simscape model and use instead of linear one
