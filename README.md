@@ -36,8 +36,8 @@ Main goal is to define two points A and B, and then to make the robot to go from
     - [ ] Implement a gain schedulling for this controller
     - [x] Choose a quality criterion and implement
     - [ ] OPTIONAL Implement different type of controller to better learn the subject 
-    - [DO!] Control signal needs constrains or even the actuator model (saturation and rate limiters defined in model params)
-    - [DO!] Think of better learning trajectory for a controller :> 
+    - [x] Control signal needs constrains or even the actuator model (saturation and rate limiters defined in model params)
+    - [?] Think of better learning trajectory for a controller :> 
     - [ ]
 4. Controller optimization
     - [x] Optimization in the single point (what should we optimize, matrices Q and R?)

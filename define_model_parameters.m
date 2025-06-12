@@ -23,6 +23,20 @@ function model_parameters = define_model_parameters()
     model_parameters.initial.tau = 0; % [N*m]
 
 
+    % Actuators
+    model_parameters.linear_actuator.transfer_fcn_num = [1]; % Gain = 1
+    model_parameters.linear_actuator.transfer_fcn_den = [0.01 1]; % małe opóźnienie, tau = 10 ms
+    model_parameters.linear_actuator.saturation_max = 100;   % [N]
+    model_parameters.linear_actuator.saturation_min = -100;  % [N]
+    model_parameters.linear_actuator.slew_rate = 10000;      % [N/s]
+
+    model_parameters.angular_actuator.transfer_fcn_num = [1]; % Gain = 1
+    model_parameters.angular_actuator.transfer_fcn_den = [0.01 1]; % małe opóźnienie, tau = 10 ms
+    model_parameters.angular_actuator.saturation_max = 120;     % [Nm]
+    model_parameters.angular_actuator.saturation_min = -120;    % [Nm]
+    model_parameters.angular_actuator.slew_rate = 12000;        % [Nm/s]
+
+
     % Those are 'declared' here they are modified later in the script
     model_parameters.linearized.A = 0;
     model_parameters.linearized.B = 0;

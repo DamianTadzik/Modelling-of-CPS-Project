@@ -11,7 +11,10 @@ MODEL_CHOICE = "NONLINEAR";
 
 REGULATOR_CHOICE = "LQR"; 
 % NO_FORCE_AND_TORQUE_APPLIED or INITIAL_FORCE_AND_TORQUE_APPLIED or
-% LQR // TODO
+% LQR or LQR_SCHEDULLING // TODO
+
+ACTUATOR_CHOICE = "IDEAL_CONSTRAINED";
+% IDEAL_UNCONSTRAINED or IDEAL_CONSTRAINED or REAL
 
 %% Set the robot into position apply initial conditions and correct matrices
 
@@ -39,7 +42,7 @@ model_parameters.initial.x4 = 0;
 
 
 %% Run the simulation, and obtain the results for plotting
-set_solver_parameters(17); % specify time if needed :>>
+set_solver_parameters(13); % specify time if needed :>>
 simOut = sim('robot_model');
 
 x1_sim = simOut.state_and_control.signals(1).values; % theta

@@ -26,8 +26,8 @@ model_parameters.initial.x4 = 0;
 A = table_of_model_parameters(idx).matrices_A;
 B = table_of_model_parameters(idx).matrices_B;
 
-set_solver_parameters(17); % specify time if needed :>>
-J_before = cost_function([20 40 20 40 .01 .01], A, B)
+set_solver_parameters(13); % specify time if needed :>>
+% J_before = cost_function([20 40 20 40 .01 .01], A, B)
 
 %% Optimization 
 initial_eyeballed_parameters = [20 40 20 40 .01 .01];
