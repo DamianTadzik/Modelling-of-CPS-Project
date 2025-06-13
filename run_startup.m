@@ -7,7 +7,7 @@ model_parameters = define_model_parameters();
 
 % plot_stationary_force_and_torque(model_equations, model_parameters);
 
-table_of_model_parameters = linearize_model_at_multiple_points(model_equations, model_parameters, 3, 1); % For now the number of theta ranges and number of r ranges is passed into this function as parameter 
+table_of_model_parameters = linearize_model_at_multiple_points(model_equations, model_parameters, 9, 3); % For now the number of theta ranges and number of r ranges is passed into this function as parameter 
 % const_table_of_model_parameters = coder.const(table_of_model_parameters);
 
 plot_operating_points_area_and_ranges(model_parameters, table_of_model_parameters);

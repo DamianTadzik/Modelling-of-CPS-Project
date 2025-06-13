@@ -18,7 +18,7 @@ ACTUATOR_CHOICE = "REAL";
 
 %% Set the robot into position apply initial conditions and correct matrices
 
-idx = 2;
+idx = 14;
 % set the reference parameters for the controller and linearized model
 model_parameters.linearized.A = table_of_model_parameters(idx).matrices_A;
 model_parameters.linearized.B = table_of_model_parameters(idx).matrices_B;
@@ -46,7 +46,8 @@ model_parameters.initial.tau = table_of_model_parameters(idx).tau_op_points;
 %% Run the simulation, and obtain the results for plotting
 set_solver_parameters('variable', 22); % specify time if needed :>>
 simOut = sim('robot_model');
-return
+
+
 %% Obtain the results
 x1_sim = simOut.state_and_control.signals(1).values(:,1); % theta
 x2_sim = simOut.state_and_control.signals(2).values(:,1); % theta dot
