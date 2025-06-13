@@ -46,7 +46,7 @@ function table_of_parameters = linearize_model_at_multiple_points(model_equation
             s(k).matrices_A = double(vpa(subs(Jacobian_A, [m g b1 b2 x1(t) x2(t) x3(t) x4(t) tau(t)], [model_parameters.m model_parameters.g model_parameters.b1 model_parameters.b2 s(k).theta_op_points 0 s(k).r_op_points 0 s(k).tau_op_points])));
             s(k).matrices_B = double(vpa(subs(Jacobian_B, [m x3(t)], [model_parameters.m s(k).r_op_points])));
     
-            s(k).eig_A = eig(s(k).matrices_A);
+            s(k).eig_A = complex(eig(s(k).matrices_A));
         end
     end
     % s_bus0 = Simulink.Bus.createObject(s);

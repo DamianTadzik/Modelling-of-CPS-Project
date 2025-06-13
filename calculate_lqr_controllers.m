@@ -1,10 +1,10 @@
 function table_of_controller_parameters = calculate_lqr_controllers(table_of_model_parameters)
     %CALCULATE_LQR_CONTROLLERS Calculates LQR gains for each model in the table
 
-    Q = 2*[20, 0, 0, 0; % Penalize the angular position error
-         0, 40, 0, 0; % Penalize the angular velocity error
-         0, 0, 20, 0; % Penalize the linear position error
-         0, 0, 0, 40]; % Penalize the linear velocity error
+    Q = [50, 0, 0, 0; % Penalize the angular position error
+         0, 100, 0, 0; % Penalize the angular velocity error
+         0, 0, 40, 0; % Penalize the linear position error
+         0, 0, 0, 80]; % Penalize the linear velocity error
     R = [0.01, 0; % Penalize the linear actuation
          0, 0.01]; % Penalize the angular actuation
     table_of_controller_parameters(1:length(table_of_model_parameters)) = struct('K', [], 'S', [], 'P', []);

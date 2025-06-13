@@ -9,16 +9,16 @@ MODEL_CHOICE = "NONLINEAR";
 % NONLINEAR or SIMSCAPE // TODO
 % LINEARIZED
 
-REGULATOR_CHOICE = "LQR"; 
+REGULATOR_CHOICE = "LQR_SCHEDULLING"; 
 % NO_FORCE_AND_TORQUE_APPLIED or INITIAL_FORCE_AND_TORQUE_APPLIED or
 % LQR or LQR_SCHEDULLING // TODO
 
-ACTUATOR_CHOICE = "IDEAL_CONSTRAINED";
+ACTUATOR_CHOICE = "REAL";
 % IDEAL_UNCONSTRAINED or IDEAL_CONSTRAINED or REAL
 
 %% Set the robot into position apply initial conditions and correct matrices
 
-idx = 1;
+idx = 2;
 % set the reference parameters for the controller and linearized model
 model_parameters.linearized.A = table_of_model_parameters(idx).matrices_A;
 model_parameters.linearized.B = table_of_model_parameters(idx).matrices_B;
@@ -33,28 +33,33 @@ model_parameters.linearized.u0 = [table_of_model_parameters(idx).f_op_points;...
 
 % set the gains for the controller
 K = table_of_controller_parameters(idx).K;
+% K = table_of_optimized_controller_parameters(idx).K;
 
 % set the inital positions for the system
 model_parameters.initial.x1 = table_of_model_parameters(idx).theta_op_points;
 model_parameters.initial.x2 = 0;
 model_parameters.initial.x3 = table_of_model_parameters(idx).r_op_points;
 model_parameters.initial.x4 = 0;
-
+model_parameters.initial.f = table_of_model_parameters(idx).f_op_points;
+model_parameters.initial.tau = table_of_model_parameters(idx).tau_op_points;
 
 %% Run the simulation, and obtain the results for plotting
-set_solver_parameters(13); % specify time if needed :>>
+set_solver_parameters('variable', 22); % specify time if needed :>>
 simOut = sim('robot_model');
-
-x1_sim = simOut.state_and_control.signals(1).values; % theta
-x2_sim = simOut.state_and_control.signals(2).values; % theta dot
-x3_sim = simOut.state_and_control.signals(3).values; % r
-x4_sim = simOut.state_and_control.signals(4).values; % r dot
-f_sim = simOut.state_and_control.signals(5).values;  % f 
-tau_sim = simOut.state_and_control.signals(6).values;% tau
+return
+%% Obtain the results
+x1_sim = simOut.state_and_control.signals(1).values(:,1); % theta
+x2_sim = simOut.state_and_control.signals(2).values(:,1); % theta dot
+x3_sim = simOut.state_and_control.signals(3).values(:,1); % r
+x4_sim = simOut.state_and_control.signals(4).values(:,1); % r dot
+f_sim = simOut.state_and_control.signals(5).values(:,2);  % f 
+tau_sim = simOut.state_and_control.signals(6).values(:,2);% tau
 time_sim = simOut.state_and_control.time;
 samples_sim = length(time_sim);
-return
-%% Animate the results
+
+% % Animate the results
+% animation_rate = 30; % [Hz]
+% sim_time = 13; % [s]
 
 clear plot_robot
 for i=1:30:samples_sim
@@ -62,3 +67,5 @@ for i=1:30:samples_sim
     % pause(0.001);
     drawnow
 end
+clear samples_sim time_sim tau_sim f_sim
+clear x1_sim x2_sim x3_sim x4_sim
