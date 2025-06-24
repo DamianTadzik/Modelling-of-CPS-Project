@@ -1,5 +1,17 @@
 # Modelling-of-CPS-Project
 
+## How to use?
+
+1. Read the README.md
+2. you can play with robot and controller parameters in:
+    - ```define_model_parameters.m``` mass, g, lenght etc...
+    - ```calculate_lqr_controllers.m``` Q and R matrices...
+3. Run ```run_startup.m```
+4. Select wanted controller, model type and initial condition in ```run_the_robot_model.m```
+5. Run whole ```run_the_robot_model.m``` script to see a visualization 
+     - You can change the if in the loop to 'true' in order to generate the GIF with the visualization
+     - You can start the robot in a different point by selecting the correct idx value
+
 ## Assumptions
 
 2 dof simple robotic arm, consisting of rotational joint connected with translational. Arm is about 1 meter in lenght. All the parameters should be defined in the define_model_parameters.m script
@@ -39,11 +51,11 @@ Main goal is to define two points A and B, and then to make the robot to go from
     - [x] Choose a quality criterion and implement
     - [ ] OPTIONAL Implement different type of controller to better learn the subject 
     - [x] Control signal needs constrains or even the actuator model (saturation and rate limiters defined in model params)
-    - [?] Think of better learning trajectory for a controller :> 
+    - [ ] Think of better learning trajectory for a controller :> 
     - [ ]
 4. Controller optimization
     - [x] Optimization in the single point (what should we optimize, matrices Q and R?)
-    - [ ] Optimization in not all points, just in few and then somehow extrapolate
+    - [x] Optimization in not all points, just in few and then somehow extrapolate
     - [ ] Save optimization results in a structure ;>
     - [ ] Save logs from optimization in a file?
     - [ ]
@@ -54,20 +66,11 @@ Main goal is to define two points A and B, and then to make the robot to go from
     - [ ]
 
 
-## How to use?
-
-1. Read the README.md XD
-2. you can play with robot and controller parameters in:
-    - ```define_model_parameters.m``` mass, g, lenght etc...
-    - ```calculate_lqr_controllers.m``` Q and R matrices...
-3. Run ```startup.m```
-4. Select wanted controller, model type and initial condition in ```run_the_robot_model.m```
-5. Run whole ```run_the_robot_model.m``` script to see a visualization 
-
 ## Authors
 inż. Damian Brzana, inż. Marek Janaszkiewicz, inż. Oskar Brandys
 
 Modelling of CPS 2024/2025, dr hab. inż. Adam Piłat
 
+https://github.com/DamianTadzik/Modelling-of-CPS-Project.git
 
 # NOTEPAD:
