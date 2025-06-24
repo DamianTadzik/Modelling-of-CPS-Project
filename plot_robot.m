@@ -109,8 +109,13 @@ function plot_robot(r, theta, r_dot, theta_dot, f, tau, time, total_time, r_min,
         % First axes: r, r_dot, f
         axrrdotf = axes('Parent', fig, 'Position', [.05 .3 .9 .2]);
         hold(axrrdotf, 'on');
+
+        axes(axrrdotf);
+        yyaxis left
         h1 = plot(axrrdotf, time_history, r_history, 'r', 'DisplayName','r');
+        yyaxis left
         h2 = plot(axrrdotf, time_history, r_dot_history, 'g', 'DisplayName','r\_dot');
+        yyaxis right
         h3 = plot(axrrdotf, time_history, f_history, 'b', 'DisplayName','f');
         hold(axrrdotf, 'off');
         xlim(axrrdotf, [0 total_time]); 
@@ -129,8 +134,13 @@ function plot_robot(r, theta, r_dot, theta_dot, f, tau, time, total_time, r_min,
         % Second axes: theta, theta_dot, tau
         axttdotg = axes('Parent', fig, 'Position', [.05 .05 .9 .2]);
         hold(axttdotg, 'on');
+
+        axes(axttdotg);
+        yyaxis left
         h4 = plot(axttdotg, time_history, theta_history, 'r', 'DisplayName','\theta');
+        yyaxis left
         h5 = plot(axttdotg, time_history, theta_dot_history, 'g', 'DisplayName','\theta\_dot');
+        yyaxis right
         h6 = plot(axttdotg, time_history, gamma_history, 'b', 'DisplayName','\tau');
         hold(axttdotg, 'off');
         xlim(axttdotg, [0 total_time]); 

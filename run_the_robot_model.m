@@ -9,9 +9,9 @@ MODEL_CHOICE = "NONLINEAR";
 % NONLINEAR or SIMSCAPE // TODO
 % LINEARIZED
 
-REGULATOR_CHOICE = "LQR_SCHEDULLING"; 
+REGULATOR_CHOICE = "LQR"; 
 % NO_FORCE_AND_TORQUE_APPLIED or INITIAL_FORCE_AND_TORQUE_APPLIED or
-% LQR or LQR_SCHEDULLING // TODO
+% LQR or LQR_SCHEDULLING
 
 ACTUATOR_CHOICE = "REAL";
 % IDEAL_UNCONSTRAINED or IDEAL_CONSTRAINED or REAL
@@ -33,6 +33,7 @@ model_parameters.linearized.u0 = [table_of_model_parameters(idx).f_op_points;...
 
 % set the gains for the controller
 K = table_of_controller_parameters(idx).K;
+% K = zeros(2, 4)
 % K = table_of_optimized_controller_parameters(idx).K;
 
 % set the inital positions for the system
@@ -62,11 +63,28 @@ samples_sim = length(time_sim);
 % animation_rate = 30; % [Hz]
 % sim_time = 13; % [s]
 
+
+filename = 'LQR.gif'; % Output file name
 clear plot_robot
 for i=1:30:samples_sim
     plot_robot(x3_sim(i), x1_sim(i), x4_sim(i), x2_sim(i), f_sim(i), tau_sim(i), time_sim(i), time_sim(end), model_parameters.r_min, model_parameters.r_max, model_parameters.theta_min, model_parameters.theta_max)
     % pause(0.001);
     drawnow
+
+
+    if false
+         % Capture frame as an image
+        frame = getframe(gcf);
+        img = frame2im(frame);
+        [imind, cm] = rgb2ind(img, 256);
+        
+        % Write to the GIF File
+        if i == 1
+            imwrite(imind, cm, filename, 'gif', 'Loopcount', inf, 'DelayTime', 0.05);
+        else
+            imwrite(imind, cm, filename, 'gif', 'WriteMode', 'append', 'DelayTime', 0.05);
+        end
+    end
 end
 clear samples_sim time_sim tau_sim f_sim
 clear x1_sim x2_sim x3_sim x4_sim
